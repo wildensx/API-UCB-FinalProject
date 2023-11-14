@@ -10,12 +10,12 @@ public class RequestProjectsPOST implements IRequest{
     public Response send(RequestInfo requestInfo) {
         Response response =  given()
                 .headers(requestInfo.getHeader())
+                .body(requestInfo.getBody())
                 .log().all()
                 .when()
-                .get(requestInfo.getUrl());
+                .post(requestInfo.getUrl());
         response.then().log().all();
 
         return response;
-
     }
 }
